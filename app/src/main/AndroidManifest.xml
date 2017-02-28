@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.afollestad.nocknock">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+
+        <activity
+            android:name="com.afollestad.nocknock.ui.MainActivity"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.afollestad.nocknock.ui.AddSiteActivity"
+            android:label="@string/add_site"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.Transparent"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name="com.afollestad.nocknock.ui.ViewSiteActivity"
+            android:label="@string/view_site"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.Ink"
+            android:windowSoftInputMode="stateHidden" />
+
+        <service
+            android:name="com.afollestad.nocknock.services.CheckService"
+            android:enabled="true"
+            android:label="Site Check Service" />
+
+        <receiver android:name=".receivers.BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".receivers.ConnectivityReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>
